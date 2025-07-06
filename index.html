@@ -7,34 +7,67 @@
 </head>
 <body>
 
-  <!-- Frame 1: Entry Point -->
+  <!-- Frame Sections -->
   <div id="frame1" class="frame visible">
-    <img src="frame1.png" alt="Theater Front" class="background" />
+    <img src="frame1.png" class="background" />
     <div id="ticket" class="clickable" title="Click to Enter"></div>
   </div>
-
-  <!-- Other Frames -->
   <div id="frame2" class="frame">
-    <img src="frame2.png" alt="Frame 2" class="background" />
+    <img src="frame2.png" class="background" />
   </div>
   <div id="frame3" class="frame">
-    <img src="frame3.png" alt="Frame 3" class="background" />
+    <img src="frame3.png" class="background" />
   </div>
   <div id="frame4" class="frame">
-    <img src="frame4.png" alt="Frame 4" class="background" />
+    <img src="frame4.png" class="background" />
   </div>
   <div id="frame5" class="frame">
-    <img src="frame5.png" alt="Frame 5" class="background" />
+    <img src="frame5.png" class="background" />
   </div>
-  <div id="lobby" class="frame">
-    <img src="lobby1.png" alt="Lobby" class="background" />
+  <div id="lobby1" class="frame">
+    <img src="lobby1.png" class="background" />
   </div>
 
   <!-- Audio -->
   <audio id="introMusic" src="intro-music.mp3"></audio>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <!-- JavaScript -->
+  <script>
+    const frameOrder = ['frame1', 'frame2', 'frame3', 'frame4', 'frame5', 'lobby1'];
+    let currentFrame = 0;
+
+    const transitionSchedule = [
+      1120, // frame3 fades in at 1s12f (30fps)
+      2266, // frame4 starts at 2s17f
+      4111, // frame5 starts at 4s11f
+      8060  // lobby starts at 8s6f
+    ];
+
+    function showNextFrame() {
+      const currentId = frameOrder[currentFrame];
+      const nextId = frameOrder[currentFrame + 1];
+
+      const currentEl = document.getElementById(currentId);
+      const nextEl = document.getElementById(nextId);
+
+      if (currentEl && nextEl) {
+        currentEl.classList.remove('visible');
+        nextEl.classList.add('visible');
+        currentFrame++;
+      }
+    }
+
+    function startSequence() {
+      document.getElementById('introMusic').play();
+      showNextFrame(); // frame1 -> frame2
+
+      transitionSchedule.forEach((ms, index) => {
+        setTimeout(showNextFrame, ms);
+      });
+    }
+
+    document.getElementById('ticket').addEventListener('click', startSequence);
+  </script>
 
 </body>
 </html>
