@@ -32,3 +32,13 @@ body {
   background: transparent;
   z-index: 10;
 }
+
+img.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
