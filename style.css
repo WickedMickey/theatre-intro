@@ -1,36 +1,34 @@
 body {
   margin: 0;
-  background: black;
   overflow: hidden;
+  background: black;
 }
 
 .frame {
-  opacity: 0;
-  transition: opacity 0.8s ease;
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
 }
 
-.visible {
-  opacity: 1;
+.frame.visible {
+  display: block;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Clickable area over the ticket in Frame 1 */
+#ticket {
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  bottom: 40px; 
+  left: 110px;
+  cursor: url('cursor-ticket.png'), pointer;
+  background: transparent;
   z-index: 10;
-}
-
-.clickable {
-  width: 200px;
-  height: 80px;
-  margin: 20vh auto;
-  background: gold;
-  color: black;
-  text-align: center;
-  line-height: 80px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 10px;
 }

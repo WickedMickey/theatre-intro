@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Theater Intro</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  <!-- Frame 1: Entry Point -->
   <div id="frame1" class="frame visible">
-    <div id="ticket" class="clickable">🎟️ Free Admission</div>
+    <div id="ticket" class="clickable" title="Click to Enter"></div>
   </div>
+
+  <!-- Other Frames -->
   <div id="frame2" class="frame"></div>
   <div id="frame3" class="frame"></div>
   <div id="frame4" class="frame"></div>
   <div id="frame5" class="frame"></div>
   <div id="lobby" class="frame"></div>
 
+  <!-- Audio -->
   <audio id="introMusic" src="intro-music.mp3"></audio>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
