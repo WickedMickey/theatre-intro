@@ -1,18 +1,48 @@
-const music = document.getElementById('introMusic');
-const ticket = document.getElementById('ticket');
+<script>
+  // Define the order of frames to display
+  const frameOrder = ['frame1', 'frame2', 'frame3', 'frame4', 'frame5', 'lobby1'];
+  let currentFrame = 0;
 
-const showFrame = (id) => {
-  document.querySelectorAll('.frame').forEach(f => f.classList.remove('visible'));
-  document.getElementById(id).classList.add('visible');
-};
+  // Frame transition times (in milliseconds)
+  const transitionSchedule = [
+    1120,  // frame2 appears at 1s12f
+    2266,  // frame3 at 2s17f
+    4111,  // frame4 at 4s11f
+    8060   // lobby1 at 8s6f
+  ];
 
-ticket.addEventListener('click', () => {
-  music.play();
+  // Crossfade from current frame to next frame
+  function showNextFrame() {
+    const currentId = frameOrder[currentFrame];
+    const nextId = frameOrder[currentFrame + 1];
 
-  showFrame('frame2');
+    const currentEl = document.getElementById(currentId);
+    const nextEl = document.getElementById(nextId);
 
-  setTimeout(() => showFrame('frame3'), 1400);
-  setTimeout(() => showFrame('frame4'), 2567);
-  setTimeout(() => showFrame('frame5'), 4367);
-  setTimeout(() => showFrame('lobby'), 8200);
-});
+    if (currentEl && nextEl) {
+      // Start fading in the next frame below
+      nextEl.classList.add('visible');
+
+      // Then fade out the current frame after 1 second (match transition duration)
+      setTimeout(() => {
+        currentEl.classList.remove('visible');
+      }, 1000); // This must match your CSS fade duration
+
+      currentFrame++;
+    }
+  }
+
+  // Begin the sequence on click
+  function startSequence() {
+    document.getElementById('introMusic').play();
+    showNextFrame(); // Start the first transition manually
+
+    // Schedule each subsequent frame transition
+    transitionSchedule.forEach((delay, index) => {
+      setTimeout(showNextFrame, delay);
+    });
+  }
+
+  // Set up click trigger
+  document.getElementById('ticket').addEventListener('click', startSequence);
+</script>
