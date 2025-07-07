@@ -1,6 +1,6 @@
 <script>
   // Define the order of frames to display
-  const frameOrder = ['frame1', 'frame2', 'frame3', 'frame4', 'frame5', 'lobby1'];
+  const frameOrder = ['frame1', 'frame2', 'frame3', 'frame4', 'frame5', 'lobbywork'];
   let currentFrame = 0;
 
   // Frame transition times (in milliseconds)
@@ -8,7 +8,7 @@
     1120,  // frame2 appears at 1s12f
     2266,  // frame3 at 2s17f
     4111,  // frame4 at 4s11f
-    8060   // lobby1 at 8s6f
+    8060   // lobbywork at 8s6f
   ];
 
   // Crossfade from current frame to next frame
